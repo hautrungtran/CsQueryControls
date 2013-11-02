@@ -1,0 +1,61 @@
+﻿.mce-tinymce.mce-container {
+    margin-bottom: 20px;
+}
+
+.mce-container-body.mce-fullscreen {
+    z-index: 2000;
+}
+
+.message-box {
+    text-align: justify;
+    min-width: 250px;
+}
+
+    .message-box .modal-header h4 {
+        margin: 0;
+    }
+
+    .message-box .modal-header .close {
+        margin-top: -3px;
+    }
+
+    .message-box .modal-footer {
+        padding: 5px;
+        text-align: center;
+    }
+
+    .message-box .btn {
+        min-width: 75px;
+    }
+
+.mask {
+    position: relative;
+}
+
+.mask-backdrop {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    background-color: #000000;
+    opacity: 0.1;
+    filter: alpha(opacity=10);
+}
+
+.mask-icon {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    top: 45%;
+    left: 45%;
+    z-index: 1050;
+    background: url(images/loading.gif);
+}
+
+.color-list a.select2-choice {
+    padding: 3px 0 0 8px;
+    line-height: 20px;
+}
