@@ -40,3 +40,81 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+
+/* styles for controls */
+
+.numeric .input-group-btn button {
+    display: table;
+    height: 17px;
+    right: 0;
+}
+
+.numeric .input-group-btn .glyphicon {
+    top: -7px;
+}
+
+.numeric .input-group-btn .glyphicon-chevron-up {
+    left: 1px;
+}
+
+.numeric .input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle),
+.numeric .input-group-btn .btn-increase {
+    border-radius: 0 4px 0 0;
+    top: 0;
+}
+
+.numeric .input-group-btn .btn-decrease {
+    border-radius: 0 0 4px 0;
+    bottom: 0;
+    margin: 0;
+}
+
+.table tfoot td, .table tfoot th {
+    min-height: 50px;
+}
+
+.table .pager, .table .input-group {
+    margin: 0;
+}
+
+    .table .pager > *, .table .table-command, .table .row-command {
+        margin-right: 5px;
+    }
+
+.table .table-command-container {
+    margin-bottom: 5px;
+}
+
+.table .page-sizes {
+    min-width: 70px;
+    width: auto;
+    display: inline-block;
+}
+
+.table .page-index-container {
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+}
+
+    .table .page-index-container input {
+        width: 90px;
+    }
+
+.table-header-text .row-command-container {
+    visibility: hidden;
+}
+
+.mce-container, .mce-container *,
+.mce-container *:before,
+.mce-container *:after {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+    .mce-container button {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
