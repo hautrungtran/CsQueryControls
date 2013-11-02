@@ -2,6 +2,5 @@
 
 namespace CsQueryControls {
     public class Button : ButtonElement {
-
     }
 }
