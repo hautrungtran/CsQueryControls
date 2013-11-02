@@ -30,8 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CsQuery">
+      <HintPath>..\packages\CsQuery.1.3.4\lib\net40\CsQuery.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -39,8 +43,72 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Button.cs" />
+    <Compile Include="CheckBox.cs" />
+    <Compile Include="Components\Combobox.cs" />
+    <Compile Include="Components\DatetimePicker.cs" />
+    <Compile Include="Components\NumericTextbox.cs" />
+    <Compile Include="DropdownList.cs" />
+    <Compile Include="HiddenField.cs" />
+    <Compile Include="HtmlAttributes\Accept.cs" />
+    <Compile Include="HtmlAttributes\AutoComplete.cs" />
+    <Compile Include="HtmlAttributes\ButtonType.cs" />
+    <Compile Include="HtmlAttributes\Dir.cs" />
+    <Compile Include="HtmlAttributes\Draggable.cs" />
+    <Compile Include="HtmlAttributes\Dropzone.cs" />
+    <Compile Include="HtmlAttributes\Formenctype.cs" />
+    <Compile Include="HtmlAttributes\FormMethod.cs" />
+    <Compile Include="HtmlAttributes\FormTarget.cs" />
+    <Compile Include="HtmlAttributes\InputType.cs" />
+    <Compile Include="HtmlAttributes\KeygenType.cs" />
+    <Compile Include="HtmlAttributes\Preload.cs" />
+    <Compile Include="HtmlAttributes\Rel.cs" />
+    <Compile Include="HtmlAttributes\Rev.cs" />
+    <Compile Include="HtmlAttributes\Sandbox.cs" />
+    <Compile Include="HtmlAttributes\Scrolling.cs" />
+    <Compile Include="HtmlAttributes\Shape.cs" />
+    <Compile Include="HtmlAttributes\Target.cs" />
+    <Compile Include="HtmlElements\AElement.cs" />
+    <Compile Include="HtmlElements\AreaElement.cs" />
+    <Compile Include="HtmlElements\AudioElement.cs" />
+    <Compile Include="HtmlElements\BlockQuoteElement.cs" />
+    <Compile Include="HtmlElements\ButtonElement.cs" />
+    <Compile Include="HtmlElements\CanvasElement.cs" />
+    <Compile Include="HtmlElements\ColElement.cs" />
+    <Compile Include="HtmlElements\ColGroupElement.cs" />
+    <Compile Include="HtmlElements\CsQueryElement.cs" />
+    <Compile Include="HtmlElements\DetailsElement.cs" />
+    <Compile Include="HtmlElements\DialogElement.cs" />
+    <Compile Include="HtmlElements\EmbedElement.cs" />
+    <Compile Include="HtmlElements\FieldsetElement.cs" />
+    <Compile Include="HtmlElements\FormElement.cs" />
+    <Compile Include="HtmlElements\HtmlTag.cs" />
+    <Compile Include="HtmlElements\IFrameElement.cs" />
+    <Compile Include="HtmlElements\ImgElement.cs" />
+    <Compile Include="HtmlElements\InputElement.cs" />
+    <Compile Include="HtmlElements\InsElement.cs" />
+    <Compile Include="HtmlElements\KeygenElement.cs" />
+    <Compile Include="HtmlElements\LabelElement.cs" />
+    <Compile Include="HtmlElements\LinkElement.cs" />
+    <Compile Include="HtmlElements\MapElement.cs" />
+    <Compile Include="HtmlElements\OlElement.cs" />
+    <Compile Include="HtmlElements\OptionElement.cs" />
+    <Compile Include="HtmlElements\SelectElement.cs" />
+    <Compile Include="HtmlElements\TableElement.cs" />
+    <Compile Include="HyperLink.cs" />
+    <Compile Include="Label.cs" />
+    <Compile Include="ListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RadioButton.cs" />
+    <Compile Include="SubmitButton.cs" />
+    <Compile Include="SubmitImage.cs" />
+    <Compile Include="SubmitInput.cs" />
+    <Compile Include="Table.cs" />
+    <Compile Include="TextBox.cs" />
+    <Compile Include="_Table.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
