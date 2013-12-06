@@ -5,7 +5,7 @@ namespace CsQueryControls.HtmlElements {
     ///     The canvas tag is used to draw graphics, on the fly, via scripting (usually JavaScript).
     ///     The canvas tag is only a container for graphics, you must use a script to actually draw the graphics.
     /// </summary>
-    public class CanvasElement : ElementBase {
+    public class CanvasElement : CommonElement {
         #region Property
 
         /// <summary>

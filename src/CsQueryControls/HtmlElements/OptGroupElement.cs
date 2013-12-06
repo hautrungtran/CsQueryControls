@@ -5,7 +5,7 @@ namespace CsQueryControls.HtmlElements {
     /// The optgroup is used to group related options in a drop-down list.
     /// If you have a long list of options, groups of related options are easier to handle for a user.
     /// </summary>
-    public class OptGroupElement : ElementBase {
+    public class OptGroupElement : CommonElement {
         #region Property
 
         /// <summary>

@@ -3,7 +3,7 @@ using CsQuery;
 using CsQueryControls.HtmlAttributes;
 
 namespace CsQueryControls.HtmlElements {
-    public class IframeElement : ElementBase {
+    public class IframeElement : CommonElement {
         #region Property
 
         /// <summary>

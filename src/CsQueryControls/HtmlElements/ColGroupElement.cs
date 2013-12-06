@@ -2,7 +2,7 @@
 using CsQuery;
 
 namespace CsQueryControls.HtmlElements {
-    public class ColGroupElement : ElementBase {
+    public class ColGroupElement : CommonElement {
         #region Property
 
         /// <summary>

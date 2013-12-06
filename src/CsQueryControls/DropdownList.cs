@@ -8,10 +8,6 @@ using CsQueryControls.HtmlElements;
 namespace CsQueryControls {
     public class DropdownList : SelectElement {
         private ObservableCollection<ListItem> _items;
-        public DropdownList(HtmlParsingMode parsingMode = HtmlParsingMode.Auto, HtmlParsingOptions parsingOptions = HtmlParsingOptions.Default, DocType docType = DocType.Default)
-            : base(parsingMode, parsingOptions, docType) {
-            Items.CollectionChanged += (sender, e) => Refresh();
-        }
         /// <summary>
         ///     Gets or sets the items.
         /// </summary>
@@ -24,6 +20,10 @@ namespace CsQueryControls {
                 _items = value;
                 Refresh();
             }
+        }
+        public DropdownList(HtmlParsingMode parsingMode = HtmlParsingMode.Auto, HtmlParsingOptions parsingOptions = HtmlParsingOptions.Default, DocType docType = DocType.Default)
+            : base(parsingMode, parsingOptions, docType) {
+            Items.CollectionChanged += (sender, e) => Refresh();
         }
         /// <summary>
         ///     Refreshes this instance.

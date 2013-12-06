@@ -8,7 +8,7 @@ namespace CsQueryControls.HtmlElements {
     /// A text area can hold an unlimited number of characters, and the text renders in a fixed-width font (usually Courier).
     /// The size of a text area can be specified by the cols and rows attributes, or even better; through CSS' height and width properties.
     /// </summary>
-    public class TextAreaElement : ElementBase {
+    public class TextAreaElement : CommonElement {
         #region Property
 
         /// <summary>

@@ -6,7 +6,7 @@ namespace CsQueryControls.HtmlElements {
     ///     The img tag defines an image in an HTML page.
     ///     The img tag has two required attributes: src and alt.
     /// </summary>
-    public class ImgElement : ElementBase {
+    public class ImgElement : CommonElement {
         #region Property
 
         /// <summary>

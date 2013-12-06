@@ -7,7 +7,7 @@ namespace CsQueryControls.HtmlElements {
     ///     The keygen tag specifies a key-pair generator field used for forms.
     ///     When the form is submitted, the private key is stored locally, and the public key is sent to the server.
     /// </summary>
-    public class KeygenElement : ElementBase {
+    public class KeygenElement : CommonElement {
         #region Property
 
         /// <summary>

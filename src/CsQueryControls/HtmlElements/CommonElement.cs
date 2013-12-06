@@ -8,7 +8,7 @@ using CsQuery;
 using CsQueryControls.HtmlAttributes;
 
 namespace CsQueryControls.HtmlElements {
-    public class ElementBase : CQ {
+    public class CommonElement : CQ {
         private readonly HtmlTag _htmlTag;
         private readonly string _tagName;
 
@@ -225,23 +225,23 @@ namespace CsQueryControls.HtmlElements {
 
         #region Constructor
 
-        public ElementBase(HtmlTag tag, HtmlParsingMode parsingMode = HtmlParsingMode.Auto, HtmlParsingOptions parsingOptions = HtmlParsingOptions.Default, DocType docType = DocType.Default)
+        public CommonElement(HtmlTag tag, HtmlParsingMode parsingMode = HtmlParsingMode.Auto, HtmlParsingOptions parsingOptions = HtmlParsingOptions.Default, DocType docType = DocType.Default)
             : base(ToHtmlString(tag), parsingMode, parsingOptions, docType) {
             _htmlTag = tag;
             _tagName = tag.ToString().ToLower();
         }
-        public ElementBase(string tagName, HtmlParsingMode parsingMode = HtmlParsingMode.Auto, HtmlParsingOptions parsingOptions = HtmlParsingOptions.Default, DocType docType = DocType.Default)
+        public CommonElement(string tagName, HtmlParsingMode parsingMode = HtmlParsingMode.Auto, HtmlParsingOptions parsingOptions = HtmlParsingOptions.Default, DocType docType = DocType.Default)
             : base(ToHtmlString(tagName), parsingMode, parsingOptions, docType) {
             Enum.TryParse(tagName, true, out _htmlTag);
             _tagName = tagName;
         }
-        public ElementBase(CQ cq)
+        public CommonElement(CQ cq)
             : base(cq.FirstElement()) {
             string tageName = cq.FirstElement().NodeName;
             Enum.TryParse(tageName, true, out _htmlTag);
             _tagName = tageName;
         }
-        public ElementBase(IDomObject dom)
+        public CommonElement(IDomObject dom)
             : base(dom) {
             string tageName = dom.NodeName;
             Enum.TryParse(tageName, true, out _htmlTag);
@@ -271,7 +271,7 @@ namespace CsQueryControls.HtmlElements {
             return new HtmlString(Render());
         }
 
-        public static ElementBase CreateElement(HtmlTag tag, HtmlParsingMode parsingMode = HtmlParsingMode.Auto, HtmlParsingOptions parsingOptions = HtmlParsingOptions.Default,
+        public static CommonElement CreateElement(HtmlTag tag, HtmlParsingMode parsingMode = HtmlParsingMode.Auto, HtmlParsingOptions parsingOptions = HtmlParsingOptions.Default,
             DocType docType = DocType.Default) {
             switch (tag) {
                 case HtmlTag.A:
@@ -279,27 +279,27 @@ namespace CsQueryControls.HtmlElements {
                 case HtmlTag.Area:
                     return new AreaElement(parsingMode, parsingOptions, docType);
                 default:
-                    return new ElementBase(tag, parsingMode, parsingOptions, docType);
+                    return new CommonElement(tag, parsingMode, parsingOptions, docType);
             }
         }
-        public static ElementBase CreateElement(CQ cq) {
-            return cq is ElementBase ? (ElementBase) cq : new ElementBase(cq);
+        public static CommonElement CreateElement(CQ cq) {
+            return cq is CommonElement ? (CommonElement) cq : new CommonElement(cq);
         }
-        public static ElementBase CreateElement(IDomObject dom) {
-            return new ElementBase(dom);
+        public static CommonElement CreateElement(IDomObject dom) {
+            return new CommonElement(dom);
         }
-        public static ElementBase CreateElement(WebControl control) {
+        public static CommonElement CreateElement(WebControl control) {
             PropertyInfo property = control.GetType().GetProperty("TagName", BindingFlags.NonPublic);
             string tagName = property.GetValue(control).ToString();
-            var element = new ElementBase(tagName);
+            var element = new CommonElement(tagName);
             foreach (string key in control.Attributes.Keys) {
                 string value = control.Attributes[key];
                 element.Attr(key, value);
             }
             return element;
         }
-        public static ElementBase CreateElement(HtmlControl control) {
-            var element = new ElementBase(control.TagName);
+        public static CommonElement CreateElement(HtmlControl control) {
+            var element = new CommonElement(control.TagName);
             foreach (string key in control.Attributes.Keys) {
                 string value = control.Attributes[key];
                 element.Attr(key, value);

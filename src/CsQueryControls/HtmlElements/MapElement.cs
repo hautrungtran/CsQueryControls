@@ -8,7 +8,7 @@ namespace CsQueryControls.HtmlElements {
     ///     relationship between the image and the map.
     ///     The map element contains a number of area elements, that defines the clickable areas in the image map.
     /// </summary>
-    public class MapElement : ElementBase {
+    public class MapElement : CommonElement {
         #region Property
 
         /// <summary>

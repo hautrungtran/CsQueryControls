@@ -5,7 +5,7 @@ namespace CsQueryControls.HtmlElements {
     /// The source tag is used to specify multiple media resources for media elements, such as video and audio.
     /// The source tag allows you to specify alternative video/audio files which the browser may choose from, based on its media type or codec support.
     /// </summary>
-    public class SourceElement : ElementBase {
+    public class SourceElement : CommonElement {
         #region Property
 
         /// <summary>

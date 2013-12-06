@@ -7,7 +7,7 @@ namespace CsQueryControls.HtmlElements {
     /// The video tag specifies video, such as a movie clip or other video streams.
     /// Currently, there are 3 supported video formats for the video element: MP4, WebM, and Ogg
     /// </summary>
-    public class VideoElement : ElementBase {
+    public class VideoElement : CommonElement {
         #region Property
 
         /// <summary>

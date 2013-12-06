@@ -4,7 +4,7 @@ namespace CsQueryControls.HtmlElements {
     /// <summary>
     /// The meter tag defines a scalar measurement within a known range, or a fractional value. This is also known as a gauge.
     /// </summary>
-    public class MeterElement : ElementBase {
+    public class MeterElement : CommonElement {
         #region Property
 
         /// <summary>

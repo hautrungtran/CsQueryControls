@@ -5,7 +5,7 @@ namespace CsQueryControls.HtmlElements {
     ///     The option tag defines an option in a select list.
     ///     option elements go inside a select or datalist element.
     /// </summary>
-    public class OptionElement : ElementBase {
+    public class OptionElement : CommonElement {
         #region Property
 
         /// <summary>

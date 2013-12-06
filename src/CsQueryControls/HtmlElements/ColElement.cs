@@ -7,7 +7,7 @@ namespace CsQueryControls.HtmlElements {
     ///     The col tag is useful for applying styles to entire columns, instead of repeating the styles for each cell, for
     ///     each row.
     /// </summary>
-    public class ColElement : ElementBase {
+    public class ColElement : CommonElement {
         #region Property
 
         /// <summary>

@@ -4,7 +4,7 @@ namespace CsQueryControls.HtmlElements {
     /// <summary>
     /// The progress tag represents the progress of a task. 
     /// </summary>
-    public class ProcessElement : ElementBase {
+    public class ProcessElement : CommonElement {
         #region Property
 
         /// <summary>

@@ -4,7 +4,7 @@ namespace CsQueryControls.HtmlElements {
     /// <summary>
     /// The param tag is used to define parameters for plugins embedded with an object element.
     /// </summary>
-    public class ParamElement : ElementBase {
+    public class ParamElement : CommonElement {
         #region Property
 
         /// <summary>

@@ -7,7 +7,7 @@ namespace CsQueryControls.HtmlElements {
     ///     Any sort of content can be put inside the details tag.
     ///     The content of a details element should not be visible unless the open attribute is set.
     /// </summary>
-    public class DetailsElement : ElementBase {
+    public class DetailsElement : CommonElement {
         #region Property
 
         /// <summary>

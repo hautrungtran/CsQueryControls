@@ -6,7 +6,7 @@ namespace CsQueryControls.HtmlElements {
     ///     The link tag defines the relationship between a document and an external resource.
     ///     The link tag is most used to link to style sheets.
     /// </summary>
-    public class LinkElement : ElementBase {
+    public class LinkElement : CommonElement {
         #region Property
 
         /// <summary>

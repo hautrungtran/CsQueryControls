@@ -4,7 +4,7 @@ namespace CsQueryControls.HtmlElements {
     /// <summary>
     ///     The blockquote tag specifies a section that is quoted from another source.
     /// </summary>
-    public class BlockQuoteElement : ElementBase {
+    public class BlockQuoteElement : CommonElement {
         #region Property
 
         /// <summary>

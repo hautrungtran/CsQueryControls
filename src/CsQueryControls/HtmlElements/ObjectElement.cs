@@ -8,7 +8,7 @@ namespace CsQueryControls.HtmlElements {
     /// You can also use the object tag to embed another webpage into your HTML document.
     /// You can use the param tag to pass parameters to plugins that have been embedded with the object tag.
     /// </summary>
-    public class ObjectElement : ElementBase {
+    public class ObjectElement : CommonElement {
         #region Property
 
         /// <summary>

@@ -6,7 +6,7 @@ namespace CsQueryControls.HtmlElements {
     /// <summary>
     ///     The audio tag defines sound, such as music or other audio streams.
     /// </summary>
-    public class AudioElement : ElementBase {
+    public class AudioElement : CommonElement {
         #region Property
 
         /// <summary>

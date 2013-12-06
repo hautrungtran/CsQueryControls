@@ -8,7 +8,7 @@ namespace CsQueryControls.HtmlElements {
     ///     input elements are used within a form element to declare input controls that allow users to input data.
     ///     An input field can vary in many ways, depending on the type attribute.
     /// </summary>
-    public class InputElement : ElementBase {
+    public class InputElement : CommonElement {
         #region Property
 
         /// <summary>

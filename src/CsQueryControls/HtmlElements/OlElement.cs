@@ -5,7 +5,7 @@ namespace CsQueryControls.HtmlElements {
     ///     The ol tag defines an ordered list. An ordered list can be numerical or alphabetical.
     ///     Use the li tag to define list items.
     /// </summary>
-    public class OlElement : ElementBase {
+    public class OlElement : CommonElement {
         #region Property
 
         /// <summary>

@@ -4,13 +4,13 @@ using CsQuery;
 using CsQueryControls.HtmlElements;
 
 namespace CsQueryControls.Components {
-    public class DatetimePicker : ElementBase {
+    public class DatetimePicker : CommonElement {
         #region Property
 
-        private readonly ElementBase _addon;
+        private readonly CommonElement _addon;
         private readonly Button _button;
         private readonly TextBox _displayInput;
-        private readonly ElementBase _icon;
+        private readonly CommonElement _icon;
         private readonly HiddenField _valueInput;
         /// <summary>
         ///     Gets the target.
@@ -162,7 +162,7 @@ namespace CsQueryControls.Components {
         /// <value>
         ///     The addon.
         /// </value>
-        public ElementBase Addon {
+        public CommonElement Addon {
             get { return _addon; }
         }
 
@@ -172,7 +172,7 @@ namespace CsQueryControls.Components {
         /// <value>
         ///     The icon.
         /// </value>
-        public ElementBase Icon {
+        public CommonElement Icon {
             get { return _icon; }
         }
 
@@ -203,10 +203,10 @@ namespace CsQueryControls.Components {
             Append(_valueInput);
 
             _button = new Button();
-            _icon = new ElementBase(HtmlTag.I);
+            _icon = new CommonElement(HtmlTag.I);
             _button.AddClass(theme.Button).Append(_icon.AddClass(theme.Icon));
 
-            _addon = new ElementBase(HtmlTag.Span);
+            _addon = new CommonElement(HtmlTag.Span);
             _addon.AddClass(theme.Addon).Append(_button);
             Append(_addon);
         }

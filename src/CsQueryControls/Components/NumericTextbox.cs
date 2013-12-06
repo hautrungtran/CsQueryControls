@@ -3,15 +3,15 @@ using CsQuery;
 using CsQueryControls.HtmlElements;
 
 namespace CsQueryControls.Components {
-    public class NumericTextbox : ElementBase {
+    public class NumericTextbox : CommonElement {
         #region Property
 
-        private readonly ElementBase _addon;
+        private readonly CommonElement _addon;
         private readonly Button _decreaseButton;
-        private readonly ElementBase _decreaseIcon;
+        private readonly CommonElement _decreaseIcon;
         private readonly TextBox _displayInput;
         private readonly Button _increaseButton;
-        private readonly ElementBase _increaseIcon;
+        private readonly CommonElement _increaseIcon;
         private readonly HiddenField _valueInput;
         /// <summary>
         ///     Gets the target.
@@ -119,7 +119,7 @@ namespace CsQueryControls.Components {
         /// <value>
         ///     The addon.
         /// </value>
-        public ElementBase Addon {
+        public CommonElement Addon {
             get { return _addon; }
         }
 
@@ -129,7 +129,7 @@ namespace CsQueryControls.Components {
         /// <value>
         ///     The increase icon.
         /// </value>
-        public ElementBase IncreaseIcon {
+        public CommonElement IncreaseIcon {
             get { return _increaseIcon; }
         }
 
@@ -149,7 +149,7 @@ namespace CsQueryControls.Components {
         /// <value>
         ///     The decrease icon.
         /// </value>
-        public ElementBase DecreaseIcon {
+        public CommonElement DecreaseIcon {
             get { return _decreaseIcon; }
         }
 
@@ -180,14 +180,14 @@ namespace CsQueryControls.Components {
             Append(_valueInput);
 
             _increaseButton = new Button();
-            _increaseIcon = new ElementBase(HtmlTag.I);
+            _increaseIcon = new CommonElement(HtmlTag.I);
             _increaseButton.AddClass(theme.IncreaseButton).Append(_increaseIcon.AddClass(theme.IncreaseIcon));
 
             _decreaseButton = new Button();
-            _decreaseIcon = new ElementBase(HtmlTag.I);
+            _decreaseIcon = new CommonElement(HtmlTag.I);
             _decreaseButton.AddClass(theme.DecreaseButton).Append(_decreaseIcon.AddClass(theme.DecreaseIcon));
 
-            _addon = new ElementBase(HtmlTag.Span);
+            _addon = new CommonElement(HtmlTag.Span);
             _addon.AddClass(theme.Addon).Append(_increaseButton).Append(_decreaseButton);
             Append(_addon);
         }

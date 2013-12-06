@@ -6,7 +6,7 @@ namespace CsQueryControls.HtmlElements {
     /// Inside the style element you specify how HTML elements should render in a browser.
     /// Each HTML document can contain multiple style tags.
     /// </summary>
-    public class StyleElement : ElementBase {
+    public class StyleElement : CommonElement {
         #region Property
 
         /// <summary>

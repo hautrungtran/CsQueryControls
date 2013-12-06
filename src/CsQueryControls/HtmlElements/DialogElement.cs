@@ -1,7 +1,7 @@
 ﻿using CsQuery;
 
 namespace CsQueryControls.HtmlElements {
-    public class DialogElement : ElementBase {
+    public class DialogElement : CommonElement {
         #region Property
 
         /// <summary>

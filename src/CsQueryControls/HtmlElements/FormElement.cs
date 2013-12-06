@@ -8,7 +8,7 @@ namespace CsQueryControls.HtmlElements {
     ///     The form element can contain one or more of the following form elements: input, textarea, button, select, option,
     ///     optgroup, fieldset, label
     /// </summary>
-    public class FormElement : ElementBase {
+    public class FormElement : CommonElement {
         #region Property
 
         /// <summary>

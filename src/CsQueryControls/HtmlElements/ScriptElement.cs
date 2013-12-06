@@ -6,7 +6,7 @@ namespace CsQueryControls.HtmlElements {
     /// The script element either contains scripting statements, or it points to an external script file through the src attribute.
     /// Common uses for JavaScript are image manipulation, form validation, and dynamic changes of content.
     /// </summary>
-    public class ScriptElement : ElementBase {
+    public class ScriptElement : CommonElement {
         #region Property
 
         /// <summary>

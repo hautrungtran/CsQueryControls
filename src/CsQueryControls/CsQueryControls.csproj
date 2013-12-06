@@ -78,7 +78,7 @@
     <Compile Include="HtmlElements\CanvasElement.cs" />
     <Compile Include="HtmlElements\ColElement.cs" />
     <Compile Include="HtmlElements\ColGroupElement.cs" />
-    <Compile Include="HtmlElements\ElementBase.cs" />
+    <Compile Include="HtmlElements\CommonElement.cs" />
     <Compile Include="HtmlElements\DetailsElement.cs" />
     <Compile Include="HtmlElements\DialogElement.cs" />
     <Compile Include="HtmlElements\EmbedElement.cs" />
@@ -108,6 +108,11 @@
     <Compile Include="HtmlElements\SourceElement.cs" />
     <Compile Include="HtmlElements\StyleElement.cs" />
     <Compile Include="HtmlElements\TableElement.cs" />
+    <Compile Include="TableBody.cs" />
+    <Compile Include="TableCell.cs" />
+    <Compile Include="TableFooter.cs" />
+    <Compile Include="TableHeader.cs" />
+    <Compile Include="TableRow.cs" />
     <Compile Include="HtmlElements\TextAreaElement.cs" />
     <Compile Include="HtmlElements\TimeElement.cs" />
     <Compile Include="HtmlElements\TrackElement.cs" />
@@ -122,6 +127,7 @@
     <Compile Include="SubmitImage.cs" />
     <Compile Include="SubmitInput.cs" />
     <Compile Include="Table.cs" />
+    <Compile Include="TableContainer.cs" />
     <Compile Include="TextBox.cs" />
     <Compile Include="_Table.cs" />
   </ItemGroup>

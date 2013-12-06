@@ -4,7 +4,7 @@ namespace CsQueryControls.HtmlElements {
     /// <summary>
     ///     The ins tag defines a text that has been inserted into a document.
     /// </summary>
-    public class InsElement : ElementBase {
+    public class InsElement : CommonElement {
         #region Property
 
         /// <summary>

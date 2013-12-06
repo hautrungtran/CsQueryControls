@@ -8,7 +8,7 @@ namespace CsQueryControls.HtmlElements {
     ///     Inside a button element you can put content, like text or images.
     ///     This is the difference between this element and buttons created with the input element.
     /// </summary>
-    public class ButtonElement : ElementBase {
+    public class ButtonElement : CommonElement {
         #region Property
 
         /// <summary>

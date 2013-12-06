@@ -4,7 +4,7 @@ namespace CsQueryControls.HtmlElements {
     /// <summary>
     /// The output tag represents the result of a calculation (like one performed by a script).
     /// </summary>
-    public class OutputElement : ElementBase {
+    public class OutputElement : CommonElement {
         #region Property
 
         /// <summary>

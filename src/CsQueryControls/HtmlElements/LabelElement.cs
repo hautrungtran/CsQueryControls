@@ -9,7 +9,7 @@ namespace CsQueryControls.HtmlElements {
     ///     The for attribute of the label tag should be equal to the id attribute of the related element to bind them
     ///     together.
     /// </summary>
-    public class LabelElement : ElementBase {
+    public class LabelElement : CommonElement {
         #region Property
 
         /// <summary>

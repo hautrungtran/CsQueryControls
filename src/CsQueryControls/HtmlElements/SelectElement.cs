@@ -5,7 +5,7 @@ namespace CsQueryControls.HtmlElements {
     ///     The select element is used to create a drop-down list.
     ///     The option tags inside the select element define the available options in the list.
     /// </summary>
-    public class SelectElement : ElementBase {
+    public class SelectElement : CommonElement {
         #region Property
 
         /// <summary>

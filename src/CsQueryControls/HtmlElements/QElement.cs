@@ -5,7 +5,7 @@ namespace CsQueryControls.HtmlElements {
     /// The q tag defines a short quotation.
     /// Browsers normally insert quotation marks around the quotation.
     /// </summary>
-    public class QElement : ElementBase {
+    public class QElement : CommonElement {
         #region Property
 
         /// <summary>

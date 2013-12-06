@@ -6,7 +6,7 @@ namespace CsQueryControls.HtmlElements {
     /// <summary>
     ///     Defines a hyperlink, which is used to link from one page to another.
     /// </summary>
-    public class AElement : ElementBase {
+    public class AElement : CommonElement {
         #region Property
 
         /// <summary>

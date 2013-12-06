@@ -7,7 +7,7 @@ namespace CsQueryControls.HtmlElements {
     ///     The area tag defines an area inside an image-map (an image-map is an image with clickable areas).
     ///     The area element is always nested inside a map tag.
     /// </summary>
-    public class AreaElement : ElementBase {
+    public class AreaElement : CommonElement {
         #region Property
 
         /// <summary>

@@ -5,7 +5,7 @@ namespace CsQueryControls.HtmlElements {
     ///     The fieldset tag is used to group related elements in a form.
     ///     The fieldset tag draws a box around the related elements.
     /// </summary>
-    public class FieldsetElement : ElementBase {
+    public class FieldsetElement : CommonElement {
         #region Property
 
         /// <summary>

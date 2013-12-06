@@ -9,7 +9,7 @@ namespace CsQueryControls.HtmlElements {
     /// Meta elements are typically used to specify page description, keywords, author of the document, last modified, and other metadata.
     /// The metadata can be used by browsers (how to display content or reload page), search engines (keywords), or other web services.
     /// </summary>
-    public class MetaElement : ElementBase {
+    public class MetaElement : CommonElement {
         #region Property
 
         /// <summary>
