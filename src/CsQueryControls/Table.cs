@@ -8,25 +8,34 @@ namespace CsQueryControls {
         private TableFooter _footer;
         public TableHeader Header {
             get {
-                return _header ?? (_header = new TableHeader());
+                return _header;
             }
             set {
+                if (_header == null) {
+                    Append(value);
+                }
                 _header = value;
             }
         }
         public TableBody Body {
             get {
-                return _body ?? (_body = new TableBody());
+                return _body;
             }
             set {
+                if (_body == null) {
+                    Append(value);
+                }
                 _body = value;
             }
         }
         public TableFooter Footer {
             get {
-                return _footer ?? (_footer = new TableFooter());
+                return _footer;
             }
             set {
+                if (_footer == null) {
+                    Append(value);
+                }
                 _footer = value;
             }
         }

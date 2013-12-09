@@ -20,7 +20,7 @@ namespace CsQueryControls {
         public TableContainer Refresh() {
             Empty();
             foreach (var row in Rows) {
-                Append(row);
+                Append(row.Refresh());
             }
             return this;
         }

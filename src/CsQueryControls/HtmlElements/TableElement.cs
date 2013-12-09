@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using CsQuery;
 
 namespace CsQueryControls.HtmlElements {
@@ -87,6 +88,23 @@ namespace CsQueryControls.HtmlElements {
 
         public TableElement(HtmlParsingMode parsingMode = HtmlParsingMode.Auto, HtmlParsingOptions parsingOptions = HtmlParsingOptions.Default, DocType docType = DocType.Default)
             : base(HtmlTag.Table, parsingMode, parsingOptions, docType) {
+        }
+        public new CQ Append(IEnumerable<IDomObject> elements) {
+            var first = true;
+
+            // must copy the enumerable first, since this can cause
+            // els to be removed from it if they move across a document boundary
+
+            var list = new List<IDomObject>(elements);
+
+            foreach (var obj in Elements) {
+                foreach (var e in list) {
+                    var toInsert = first ? e : e.Clone();
+                    obj.AppendChild(toInsert);
+                }
+                first = false;
+            }
+            return this;
         }
     }
 }

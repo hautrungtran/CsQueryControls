@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsQueryControls", "CsQueryC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsQueryControls.Demo", "CsQueryControls.Demo\CsQueryControls.Demo.csproj", "{3CA1CEAD-B56D-463A-BD45-F32F992D5692}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsQueryControls.Example", "CsQueryControls.Example\CsQueryControls.Example.csproj", "{800A924F-5E49-4A69-BC87-E2A52888DF2D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{3CA1CEAD-B56D-463A-BD45-F32F992D5692}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CA1CEAD-B56D-463A-BD45-F32F992D5692}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CA1CEAD-B56D-463A-BD45-F32F992D5692}.Release|Any CPU.Build.0 = Release|Any CPU
+		{800A924F-5E49-4A69-BC87-E2A52888DF2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{800A924F-5E49-4A69-BC87-E2A52888DF2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{800A924F-5E49-4A69-BC87-E2A52888DF2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{800A924F-5E49-4A69-BC87-E2A52888DF2D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
