@@ -24,7 +24,7 @@ namespace CsQueryControls.Helper {
                     }
                 }
             }
-            var name = string.Empty;
+            var name = propertyName;
             if (attr != null) {
                 name = attr.ResourceType != null
                     ? attr.ResourceType.GetProperty(attr.Name).GetValue(null).ToString()

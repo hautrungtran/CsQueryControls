@@ -1,5 +1,18 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-
-@(Html.Raw(new GridView<MyClass>("table", Url.Action("About"), true, false).Render()))
+<style>
+    .grid .pager-container > *, .grid .table-command, .grid .row-command {
+        margin-right: 5px;
+    }
+    .grid .page-index {
+        width: 50px;
+    }
+    .grid .page-sizes {
+        width: 65px;
+    }
+</style>
+@{
+    var table = new GridView<MyClass>("table", Url.Action("About"), true, false);
+}
+@(table.RenderHtml())
