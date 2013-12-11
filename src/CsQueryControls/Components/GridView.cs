@@ -1,17 +1,27 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Web.Mvc;
 using CsQuery;
 using CsQueryControls.Helper;
 using CsQueryControls.HtmlElements;
 
 namespace CsQueryControls.Components {
     public class GridView<T> : TableElement {
+        #region Field
+
         private IEnumerable<int> _pageSizes;
         private TableHeader _header;
         private TableBody _body;
-        private TableFooter _footer;
+        private CommonElement _footer;
+
+        #endregion
+
+        #region Property
+
         public string Key {
             get {
                 return Attr("data-key");
@@ -36,6 +46,14 @@ namespace CsQueryControls.Components {
                 Attr("data-cache", ToLowerString(value));
             }
         }
+        public bool MultiSelect {
+            get {
+                return Attr<bool>("data-multiselect");
+            }
+            set {
+                Attr("data-multiselect", ToLowerString(value));
+            }
+        }
         public string DefaultText {
             get {
                 return Attr("data-default-text");
@@ -47,6 +65,8 @@ namespace CsQueryControls.Components {
         public string PageDisplay { get; set; }
         public bool AutoGenerateColumns { get; set; }
         public ObservableCollection<GridColumn> Columns { get; private set; }
+        public ObservableCollection<GridCommand> Commands { get; private set; }
+        public ObservableCollection<GridCommand> RowCommands { get; private set; }
         public TableHeader Header {
             get {
                 return _header;
@@ -71,7 +91,7 @@ namespace CsQueryControls.Components {
                 Append(value);
             }
         }
-        public TableFooter Footer {
+        public CommonElement Footer {
             get {
                 return _footer;
             }
@@ -84,6 +104,11 @@ namespace CsQueryControls.Components {
             }
         }
         public GridTheme Theme { get; set; }
+
+        #endregion
+
+        #region Constructor
+
         public GridView(string name, string href, bool autoGenerateColumns = true, bool hasFooter = true,
             IEnumerable<int> pageSizes = null, GridTheme theme = null,
             HtmlParsingMode parsingMode = HtmlParsingMode.Auto, HtmlParsingOptions parsingOptions = HtmlParsingOptions.Default, DocType docType = DocType.Default)
@@ -113,31 +138,78 @@ namespace CsQueryControls.Components {
             _pageSizes = pageSizes;
             InitColumns();
             InitCommands();
+            InitBody();
         }
+
+        #endregion
+
+        #region Method
+
+        public GridView<T> AddColumn(string name, string text, ColumnType type = ColumnType.Text, bool sortable = true) {
+            Columns.Add(new GridColumn {
+                Name = name,
+                InnerText = text,
+                Sortable = sortable
+            });
+            return this;
+        }
+        public GridView<T> AddColumnFor<TProperty>(Expression<Func<T, TProperty>> expression, ColumnType type = ColumnType.Text, bool sortable = true) {
+            var name = ExpressionHelper.GetExpressionText(expression);
+            var displayName = ControlHelper.GetDisplayName(expression);
+            var text = string.IsNullOrEmpty(displayName) ? name : displayName;
+            return AddColumn(name, text, type, sortable);
+        }
+        public GridView<T> RemoveColumn(string name) {
+            foreach (var column in Columns.Where(column => column.Name == name)) {
+                Columns.Remove(column);
+            }
+            return this;
+        }
+        public GridView<T> RemoveColumnFor<TProperty>(Expression<Func<T, TProperty>> expression) {
+            var name = ExpressionHelper.GetExpressionText(expression);
+            return RemoveColumn(name);
+        }
+
+        #endregion
+
+        #region Private Member
+
         private void InitColumns() {
+            if (RowCommands == null) {
+                RowCommands = new ObservableCollection<GridCommand>();
+                RowCommands.CollectionChanged += (sender, e) => {
+                    var rowCommandContainer = Columns.FirstOrDefault(column => column.HasClass(Theme.RowCommandContainer));
+                    if (rowCommandContainer == null) {
+                        rowCommandContainer = new GridColumn { Class = Theme.RowCommandContainer };
+                        Columns.Add(rowCommandContainer);
+                    }
+                    rowCommandContainer.Empty();
+                    foreach (var command in RowCommands) {
+                        rowCommandContainer.Append(command.AddClass(Theme.RowCommand));
+                    }
+                };
+            }
             if (Columns != null) return;
             Columns = new ObservableCollection<GridColumn>();
             Columns.CollectionChanged += (sender, e) => {
                 if (!AutoGenerateColumns) return;
-                var rows = Header.Rows.Where(row => row.HasClass(Theme.Columns));
-                if (Footer != null) {
-                    rows = rows.Concat(Footer.Rows.Where(row => row.HasClass(Theme.Columns)));
-                }
+                var rows = Header.Rows.Where(row => row.HasClass(Theme.Columns)).ToList();
                 foreach (var row in rows) {
-                    row.Empty();
+                    row.Cells.Clear();
                     foreach (var column in Columns) {
                         row.Cells.Add(column);
                     }
+
                 }
+                CloneFooter();
             };
             if (AutoGenerateColumns) {
-                Header.Rows.Add(new TableRow {
+                var row = new TableRow {
                     Class = Theme.Columns
-                });
+                };
+                Header.Rows.Add(row);
                 if (Footer != null) {
-                    Footer.Rows.Insert(0, new TableRow {
-                        Class = Theme.Columns
-                    });
+                    Footer.Prepend(row.Clone());
                 }
                 var properties = typeof(T).GetProperties();
                 foreach (var property in properties) {
@@ -159,13 +231,33 @@ namespace CsQueryControls.Components {
                 ColSpan = Columns.Count
             };
             row.Cells.Add((TableCell)commandContainer);
-            Columns.CollectionChanged += (sender, e) => ((TableCell)commandContainer).ColSpan = Columns.Count;
+            Columns.CollectionChanged += (sender, e) => {
+                ((TableCell)commandContainer).ColSpan = Columns.Count;
+                CloneFooter();
+            };
             Header.Rows.Insert(0, row);
-            if (Footer != null) {
-                Footer.Rows.Add(row);
-            }
+            CloneFooter();
+            InitGridCommands();
             InitPagerCommands();
-
+        }
+        private void InitGridCommands() {
+            var commandContainer = Find(ToSelector(Theme.CommandContainer));
+            var gridCommandContainer = commandContainer.Find(ToSelector(Theme.GridCommandContainer));
+            if (!gridCommandContainer.Any()) {
+                gridCommandContainer = new CommonElement(HtmlTag.Span) {
+                    Class = Theme.GridCommandContainer
+                };
+                commandContainer.Append(gridCommandContainer);
+            }
+            if (Commands == null) {
+                Commands = new ObservableCollection<GridCommand>();
+                Commands.CollectionChanged += (sender, e) => {
+                    gridCommandContainer.Empty();
+                    foreach (var command in Commands) {
+                        gridCommandContainer.Append(command.AddClass(Theme.GridCommandButton));
+                    }
+                };
+            }
         }
         private void InitPagerCommands() {
             var commandContainer = Find(ToSelector(Theme.CommandContainer));
@@ -211,17 +303,38 @@ namespace CsQueryControls.Components {
             pagerContainer.Append(firstButton).Append(previousButton).Append(pageDisplay).Append(nextButton).Append(lastButton).Append(pageSizes);
             commandContainer.Append(pagerContainer);
         }
+        private void InitBody() {
+            Body.Empty();
+            var row = new TableRow();
+            var cell = new TableCell {
+                ColSpan = Columns.Count,
+                InnerText = DefaultText
+            };
+            Columns.CollectionChanged += (sender, e) => cell.ColSpan = Columns.Count;
+            row.Cells.Add(cell);
+            Body.Rows.Add(row);
+        }
+        private void CloneFooter() {
+            if (Footer == null) return;
+            Footer.Empty();
+            foreach (var row in Header.Rows) {
+                Footer.Prepend(row.Clone());
+            }
+        }
         private string ToSelector(string classes) {
             return string.Join(string.Empty, classes.Split(' ').Select(s => "." + s));
         }
+
+        #endregion
+
         public static GridTheme DefaulTheme {
             get {
                 return new GridTheme {
                     Table = "grid table table-bordered table-hover table-striped",
                     Columns = "columns",
                     CommandContainer = "command-container",
-                    TableCommandContainer = "table-command-container",
-                    TableCommandButton = "table-command btn btn-primary btn-sm",
+                    GridCommandContainer = "grid-command-container",
+                    GridCommandButton = "grid-command btn btn-primary btn-sm",
                     PagerContainer = "pager-container pull-right form-inline",
                     FirstButton = "first-button btn btn-default btn-sm",
                     FirstIcon = "glyphicon glyphicon-step-backward",
@@ -235,6 +348,7 @@ namespace CsQueryControls.Components {
                     LastIcon = "glyphicon glyphicon-step-forward",
                     PageSizes = "page-sizes form-control input-sm",
                     RowCommand = "row-command",
+                    RowCommandContainer = "row-command-container",
                 };
             }
         }
@@ -243,8 +357,8 @@ namespace CsQueryControls.Components {
         public string Table { get; set; }
         public string Columns { get; set; }
         public string CommandContainer { get; set; }
-        public string TableCommandContainer { get; set; }
-        public string TableCommandButton { get; set; }
+        public string GridCommandContainer { get; set; }
+        public string GridCommandButton { get; set; }
         public string PagerContainer { get; set; }
         public string FirstButton { get; set; }
         public string FirstIcon { get; set; }
@@ -257,6 +371,7 @@ namespace CsQueryControls.Components {
         public string LastButton { get; set; }
         public string LastIcon { get; set; }
         public string PageSizes { get; set; }
+        public string RowCommandContainer { get; set; }
         public string RowCommand { get; set; }
     }
 }

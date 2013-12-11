@@ -2,17 +2,33 @@
     ViewBag.Title = "Home Page";
 }
 <style>
-    .grid .pager-container > *, .grid .table-command, .grid .row-command {
+    .grid .pager-container > *, .grid .grid-command, .grid .row-command {
         margin-right: 5px;
     }
+
     .grid .page-index {
         width: 50px;
     }
+
     .grid .page-sizes {
         width: 65px;
     }
+
+    .grid .row-command-container, .grid .multiselect {
+        width: 1px;
+        white-space: nowrap;
+        visibility: hidden;
+    }
 </style>
 @{
-    var table = new GridView<MyClass>("table", Url.Action("About"), true, false);
+    var table = new GridView<MyClass>("table", Url.Action("About")) {
+        MultiSelect = true
+    };
+    table.Commands.Add(new GridCommand(Url.Action("Contact")) { Icon = "glyphicon glyphicon-step-backward" });
+    table.Commands.Add(new GridCommand(Url.Action("Contact")) { Icon = "glyphicon glyphicon-arrow-right" });
+    table.RowCommands.Add(new GridCommand(Url.Action("Contact")) { Icon = "glyphicon glyphicon-step-backward" });
+    table.RowCommands.Add(new GridCommand(Url.Action("Contact")) { Icon = "glyphicon glyphicon-arrow-right" });
+    table.MultiSelect = true;
+    table.MultiSelect = true;
 }
 @(table.RenderHtml())
