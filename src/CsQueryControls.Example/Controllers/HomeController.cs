@@ -21,5 +21,18 @@ namespace CsQueryControls.Example.Controllers {
 
             return View();
         }
+        public JsonResult Get(int pageIndex, int pageSize) {
+            var list = new List<MyClass>();
+            for (int i = 0; i < 1000; i++) {
+                list.Add(new MyClass {
+                    S1 = i.ToString(),
+                    S2 = "http://cdn.tutorialzine.com/wp-content/uploads/2009/09/351.jpg",
+                    S3 = i % 2 == 0 ? "true" : "false",
+                    S4 = Guid.NewGuid().ToString(),
+                    S5 = Guid.NewGuid().ToString(),
+                });
+            }
+            return Json(new { items = list.Skip(pageIndex * pageSize).Take(pageSize), total = 1000 / pageSize }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

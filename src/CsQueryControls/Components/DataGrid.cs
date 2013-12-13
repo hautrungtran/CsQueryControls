@@ -10,7 +10,7 @@ using CsQueryControls.Helper;
 using CsQueryControls.HtmlElements;
 
 namespace CsQueryControls.Components {
-    public class GridView<T> : TableElement {
+    public class DataGrid<T> : TableElement {
         #region Field
 
         private IEnumerable<int> _pageSizes;
@@ -109,7 +109,7 @@ namespace CsQueryControls.Components {
 
         #region Constructor
 
-        public GridView(string name, string href, bool autoGenerateColumns = true, bool hasFooter = true,
+        public DataGrid(string name, string href, bool autoGenerateColumns = true, bool hasFooter = true,
             IEnumerable<int> pageSizes = null, GridTheme theme = null,
             HtmlParsingMode parsingMode = HtmlParsingMode.Auto, HtmlParsingOptions parsingOptions = HtmlParsingOptions.Default, DocType docType = DocType.Default)
             : base(parsingMode, parsingOptions, docType) {
@@ -145,27 +145,28 @@ namespace CsQueryControls.Components {
 
         #region Method
 
-        public GridView<T> AddColumn(string name, string text, ColumnType type = ColumnType.Text, bool sortable = true) {
+        public DataGrid<T> AddColumn(string name, string text, ColumnType type = ColumnType.Text, bool sortable = true) {
             Columns.Add(new GridColumn {
                 Name = name,
                 InnerText = text,
-                Sortable = sortable
+                Sortable = sortable,
+                Type = type
             });
             return this;
         }
-        public GridView<T> AddColumnFor<TProperty>(Expression<Func<T, TProperty>> expression, ColumnType type = ColumnType.Text, bool sortable = true) {
+        public DataGrid<T> AddColumnFor<TProperty>(Expression<Func<T, TProperty>> expression, ColumnType type = ColumnType.Text, bool sortable = true) {
             var name = ExpressionHelper.GetExpressionText(expression);
             var displayName = ControlHelper.GetDisplayName(expression);
             var text = string.IsNullOrEmpty(displayName) ? name : displayName;
             return AddColumn(name, text, type, sortable);
         }
-        public GridView<T> RemoveColumn(string name) {
+        public DataGrid<T> RemoveColumn(string name) {
             foreach (var column in Columns.Where(column => column.Name == name)) {
                 Columns.Remove(column);
             }
             return this;
         }
-        public GridView<T> RemoveColumnFor<TProperty>(Expression<Func<T, TProperty>> expression) {
+        public DataGrid<T> RemoveColumnFor<TProperty>(Expression<Func<T, TProperty>> expression) {
             var name = ExpressionHelper.GetExpressionText(expression);
             return RemoveColumn(name);
         }
@@ -180,7 +181,7 @@ namespace CsQueryControls.Components {
                 RowCommands.CollectionChanged += (sender, e) => {
                     var rowCommandContainer = Columns.FirstOrDefault(column => column.HasClass(Theme.RowCommandContainer));
                     if (rowCommandContainer == null) {
-                        rowCommandContainer = new GridColumn { Class = Theme.RowCommandContainer };
+                        rowCommandContainer = new GridColumn { Class = Theme.RowCommandContainer, Type = ColumnType.Static };
                         Columns.Add(rowCommandContainer);
                     }
                     rowCommandContainer.Empty();

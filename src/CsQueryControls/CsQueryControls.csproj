@@ -79,7 +79,7 @@
     <Compile Include="Components\Combobox.cs" />
     <Compile Include="Components\DatetimePicker.cs" />
     <Compile Include="Components\GridCommand.cs" />
-    <Compile Include="Components\GridView.cs" />
+    <Compile Include="Components\DataGrid.cs" />
     <Compile Include="Components\GridColumn.cs" />
     <Compile Include="Components\NumericTextbox.cs" />
     <Compile Include="DropdownList.cs" />

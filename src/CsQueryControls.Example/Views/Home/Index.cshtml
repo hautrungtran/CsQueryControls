@@ -20,10 +20,19 @@
         visibility: hidden;
     }
 </style>
+@section scripts {
+    <script src="/Scripts/datagrid.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#table').datagrid();
+        });
+    </script>
+}
+
 @{
-    var table = new GridView<MyClass>("table", Url.Action("About")) {
+    var table = new DataGrid<MyClass>("table", Url.Action("Get")) {
         MultiSelect = true
-    };
+    }.AddColumnFor(model => model.S3, ColumnType.Checkbox);
     table.Commands.Add(new GridCommand(Url.Action("Contact")) { Icon = "glyphicon glyphicon-step-backward" });
     table.Commands.Add(new GridCommand(Url.Action("Contact")) { Icon = "glyphicon glyphicon-arrow-right" });
     table.RowCommands.Add(new GridCommand(Url.Action("Contact")) { Icon = "glyphicon glyphicon-step-backward" });

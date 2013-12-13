@@ -33,11 +33,11 @@ namespace CsQueryControls.Components {
         }
     }
     public enum ColumnType {
+        Static,
         Text,
         Html,
         Link,
         Image,
-        Checkbox,
-        Dropdown
+        Checkbox
     }
 }
