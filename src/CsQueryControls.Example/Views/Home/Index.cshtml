@@ -1,6 +1,8 @@
-﻿@{
+﻿@using CsQueryControls.HtmlAttributes
+@{
     ViewBag.Title = "Home Page";
 }
+<link rel="stylesheet" href="/Scripts/fancybox/jquery.fancybox.css" />
 <style>
     .grid .pager-container > *, .grid .grid-command, .grid .row-command {
         margin-right: 5px;
@@ -21,6 +23,8 @@
     }
 </style>
 @section scripts {
+    <script src="/Scripts/jquery.blockUI.js"></script>
+    <script src="/Scripts/fancybox/jquery.fancybox.js"></script>
     <script src="/Scripts/datagrid.js"></script>
     <script>
         $(document).ready(function () {
@@ -32,9 +36,13 @@
 @{
     var table = new DataGrid<MyClass>("table", Url.Action("Get")) {
         MultiSelect = true
-    }.AddColumnFor(model => model.S3, ColumnType.Checkbox);
-    table.Commands.Add(new GridCommand(Url.Action("Contact")) { Icon = "glyphicon glyphicon-step-backward" });
-    table.Commands.Add(new GridCommand(Url.Action("Contact")) { Icon = "glyphicon glyphicon-arrow-right" });
+    }.SetKey(x => x.S1);
+    table.Columns.Clear();
+    table.AddColumnFor(x => x.S1).AddColumnFor(x => x.S2).AddColumnFor(x => x.S3, ColumnType.Checkbox);
+    table.AddColumnFor(x => x.S4).AddColumnFor(x => x.S5, ColumnType.Html);
+    table.Commands.Add(new GridCommand(Url.Action("Contact")) { Icon = "glyphicon glyphicon-step-backward", Target = Target.Blank });
+    table.Commands.Add(new DialogCommand(Url.Action("Contact")) { Icon = "glyphicon glyphicon-arrow-right", Refresh = true });
+    table.Commands.Add(new AjaxCommand(Url.Action("Remove")) { Icon = "glyphicon glyphicon-arrow-left" });
     table.RowCommands.Add(new GridCommand(Url.Action("Contact")) { Icon = "glyphicon glyphicon-step-backward" });
     table.RowCommands.Add(new GridCommand(Url.Action("Contact")) { Icon = "glyphicon glyphicon-arrow-right" });
     table.MultiSelect = true;

@@ -15,6 +15,7 @@ namespace CsQueryControls.Components {
         }
         public GridCommand(string href, HtmlParsingMode parsingMode = HtmlParsingMode.Auto, HtmlParsingOptions parsingOptions = HtmlParsingOptions.Default, DocType docType = DocType.Default)
             : base(href, parsingMode, parsingOptions, docType) {
+            Attr("data-command-type", "default");
             _icon = new CommonElement(HtmlTag.I);
             Append(_icon);
         }

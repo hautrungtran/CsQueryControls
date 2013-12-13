@@ -145,6 +145,14 @@ namespace CsQueryControls.Components {
 
         #region Method
 
+        public DataGrid<T> SetKey<TProperty>(Expression<Func<T, TProperty>> expression) {
+            Key = ExpressionHelper.GetExpressionText(expression);
+            return this;
+        }
+        public GridColumn GetColumnsFor<TProperty>(Expression<Func<T, TProperty>> expression) {
+            var name = ExpressionHelper.GetExpressionText(expression);
+            return Columns.FirstOrDefault(column => column.Name == name);
+        }
         public DataGrid<T> AddColumn(string name, string text, ColumnType type = ColumnType.Text, bool sortable = true) {
             Columns.Add(new GridColumn {
                 Name = name,
@@ -160,15 +168,15 @@ namespace CsQueryControls.Components {
             var text = string.IsNullOrEmpty(displayName) ? name : displayName;
             return AddColumn(name, text, type, sortable);
         }
-        public DataGrid<T> RemoveColumn(string name) {
+        public DataGrid<T> RemoveColumns(string name) {
             foreach (var column in Columns.Where(column => column.Name == name)) {
                 Columns.Remove(column);
             }
             return this;
         }
-        public DataGrid<T> RemoveColumnFor<TProperty>(Expression<Func<T, TProperty>> expression) {
+        public DataGrid<T> RemoveColumnsFor<TProperty>(Expression<Func<T, TProperty>> expression) {
             var name = ExpressionHelper.GetExpressionText(expression);
-            return RemoveColumn(name);
+            return RemoveColumns(name);
         }
 
         #endregion

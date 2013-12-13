@@ -36,8 +36,6 @@ namespace CsQueryControls.Components {
         Static,
         Text,
         Html,
-        Link,
-        Image,
         Checkbox
     }
 }

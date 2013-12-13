@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
+using CsQueryControls.HtmlElements;
 
 namespace CsQueryControls.Example.Controllers {
     public class HomeController : Controller {
@@ -22,17 +24,22 @@ namespace CsQueryControls.Example.Controllers {
             return View();
         }
         public JsonResult Get(int pageIndex, int pageSize) {
+            Thread.Sleep(3000);
             var list = new List<MyClass>();
             for (int i = 0; i < 1000; i++) {
                 list.Add(new MyClass {
                     S1 = i.ToString(),
                     S2 = "http://cdn.tutorialzine.com/wp-content/uploads/2009/09/351.jpg",
                     S3 = i % 2 == 0 ? "true" : "false",
-                    S4 = Guid.NewGuid().ToString(),
-                    S5 = Guid.NewGuid().ToString(),
+                    S4 = "http://google.com.vn",
+                    S5 = new CommonElement(HtmlTag.B) { InnerText = "Bold" }.Render(),
                 });
             }
             return Json(new { items = list.Skip(pageIndex * pageSize).Take(pageSize), total = 1000 / pageSize }, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult Remove() {
+            Thread.Sleep(3000);
+            return Json("response message.", JsonRequestBehavior.AllowGet);
         }
     }
 }
