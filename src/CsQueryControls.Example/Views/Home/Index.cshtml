@@ -16,11 +16,31 @@
         width: 65px;
     }
 
-    .grid .row-command-container, .grid .multiselect {
+    .grid .row-command-container {
         width: 1px;
         white-space: nowrap;
         visibility: hidden;
     }
+
+    .grid .header a.sortable {
+        display: block;
+    }
+
+        .grid .header a.sortable:hover, .grid .header a.sortable:focus {
+            text-decoration: none;
+        }
+
+    .modal-header, .modal-footer {
+        padding: 10px;
+    }
+
+    .message-box {
+        width: 600px;
+    }
+
+        .message-box .btn {
+            min-width: 75px;
+        }
 </style>
 @section scripts {
     <script src="/Scripts/jquery.blockUI.js"></script>
@@ -42,7 +62,7 @@
     table.AddColumnFor(x => x.S4).AddColumnFor(x => x.S5, ColumnType.Html);
     table.Commands.Add(new GridCommand(Url.Action("Contact")) { Icon = "glyphicon glyphicon-step-backward", Target = Target.Blank });
     table.Commands.Add(new DialogCommand(Url.Action("Contact")) { Icon = "glyphicon glyphicon-arrow-right", Refresh = true });
-    table.Commands.Add(new AjaxCommand(Url.Action("Remove")) { Icon = "glyphicon glyphicon-arrow-left" });
+    table.Commands.Add(new AjaxCommand("") { Icon = "glyphicon glyphicon-arrow-left" });
     table.RowCommands.Add(new GridCommand(Url.Action("Contact")) { Icon = "glyphicon glyphicon-step-backward" });
     table.RowCommands.Add(new GridCommand(Url.Action("Contact")) { Icon = "glyphicon glyphicon-arrow-right" });
     table.MultiSelect = true;

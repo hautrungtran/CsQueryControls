@@ -189,7 +189,7 @@ namespace CsQueryControls.Components {
                 RowCommands.CollectionChanged += (sender, e) => {
                     var rowCommandContainer = Columns.FirstOrDefault(column => column.HasClass(Theme.RowCommandContainer));
                     if (rowCommandContainer == null) {
-                        rowCommandContainer = new GridColumn { Class = Theme.RowCommandContainer, Type = ColumnType.Static };
+                        rowCommandContainer = new GridColumn { Class = Theme.RowCommandContainer, Type = ColumnType.Static, Sortable = false };
                         Columns.Add(rowCommandContainer);
                     }
                     rowCommandContainer.Empty();
@@ -200,26 +200,17 @@ namespace CsQueryControls.Components {
             }
             if (Columns != null) return;
             Columns = new ObservableCollection<GridColumn>();
-            Columns.CollectionChanged += (sender, e) => {
-                if (!AutoGenerateColumns) return;
-                var rows = Header.Rows.Where(row => row.HasClass(Theme.Columns)).ToList();
-                foreach (var row in rows) {
+            if (AutoGenerateColumns) {
+                var row = new TableRow();
+                Header.Rows.Add(row);
+                Columns.CollectionChanged += (sender, e) => {
                     row.Cells.Clear();
                     foreach (var column in Columns) {
+                        column.AddClass(Theme.Header);
                         row.Cells.Add(column);
                     }
-
-                }
-                CloneFooter();
-            };
-            if (AutoGenerateColumns) {
-                var row = new TableRow {
-                    Class = Theme.Columns
+                    CloneFooter();
                 };
-                Header.Rows.Add(row);
-                if (Footer != null) {
-                    Footer.Prepend(row.Clone());
-                }
                 var properties = typeof(T).GetProperties();
                 foreach (var property in properties) {
                     var column = new GridColumn {
@@ -340,7 +331,7 @@ namespace CsQueryControls.Components {
             get {
                 return new GridTheme {
                     Table = "grid table table-bordered table-hover table-striped",
-                    Columns = "columns",
+                    Header = "header",
                     CommandContainer = "command-container",
                     GridCommandContainer = "grid-command-container",
                     GridCommandButton = "grid-command btn btn-primary btn-sm",
@@ -364,7 +355,7 @@ namespace CsQueryControls.Components {
     }
     public class GridTheme {
         public string Table { get; set; }
-        public string Columns { get; set; }
+        public string Header { get; set; }
         public string CommandContainer { get; set; }
         public string GridCommandContainer { get; set; }
         public string GridCommandButton { get; set; }

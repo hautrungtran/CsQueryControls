@@ -24,7 +24,6 @@ namespace CsQueryControls.Example.Controllers {
             return View();
         }
         public JsonResult Get(int pageIndex, int pageSize) {
-            Thread.Sleep(3000);
             var list = new List<MyClass>();
             for (int i = 0; i < 1000; i++) {
                 list.Add(new MyClass {
@@ -38,7 +37,6 @@ namespace CsQueryControls.Example.Controllers {
             return Json(new { items = list.Skip(pageIndex * pageSize).Take(pageSize), total = 1000 / pageSize }, JsonRequestBehavior.AllowGet);
         }
         public JsonResult Remove() {
-            Thread.Sleep(3000);
             return Json("response message.", JsonRequestBehavior.AllowGet);
         }
     }
